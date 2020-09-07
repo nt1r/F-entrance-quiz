@@ -7,12 +7,8 @@ class App extends Component {
   render() {
     return (
       <main>
-        <section>
-          <MemberSection />
-        </section>
-        <section>
-          <GroupSection />
-        </section>
+        <MemberSection />
+        <GroupSection />
       </main>
     );
   }

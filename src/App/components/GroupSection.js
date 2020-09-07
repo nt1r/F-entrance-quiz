@@ -3,7 +3,7 @@ import '../App.scss';
 
 class GroupSection extends React.Component {
   render() {
-    return <div />;
+    return <section />;
   }
 }
 

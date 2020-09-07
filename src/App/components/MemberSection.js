@@ -8,7 +8,7 @@ const getAllMembersUrl = `${HOST_IP}/group-api/init-list`;
 class MemberSection extends React.Component {
   componentDidMount() {
     this.makeHttpRequest('GET', getAllMembersUrl).then((response) => {
-      console.log(response.data);
+      console.log(response);
     });
   }
 
@@ -31,7 +31,11 @@ class MemberSection extends React.Component {
   }
 
   render() {
-    return <SectionTitle titleName="学员列表" />;
+    return (
+      <section>
+        <SectionTitle titleName="学员列表" />
+      </section>
+    );
   }
 }
 
