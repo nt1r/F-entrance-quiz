@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import './App.scss';
+import MemberSection from './components/MemberSection';
+import GroupSection from './components/GroupSection';
 
 class App extends Component {
   render() {
     return (
-      <div data-testid="app" className="App">
-        Hello World
-      </div>
+      <main>
+        <section>
+          <MemberSection />
+        </section>
+        <section>
+          <GroupSection />
+        </section>
+      </main>
     );
   }
 }
