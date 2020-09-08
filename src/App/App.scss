@@ -40,3 +40,31 @@
   display: inline-block;
   border: 2px solid black;
 }
+
+.groupSectionTitleDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assignButton {
+  float: right;
+  background-color: red;
+  color: white;
+  margin-right: 30px;
+  width: 100px;
+  height: 40px;
+}
+
+.teamNameButton {
+  width: 100%;
+  font-size: 1.4em;
+  background-color: slategray;
+}
+
+.renameInput {
+  width: 100%;
+  font-size: 1.4em;
+  background-color: slategray;
+  text-align: center;
+}
