@@ -6,10 +6,12 @@ import GroupSection from './components/GroupSection';
 class App extends Component {
   render() {
     return (
-      <main>
-        <MemberSection />
-        <GroupSection />
-      </main>
+      <body className="App">
+        <main>
+          <GroupSection />
+          <MemberSection />
+        </main>
+      </body>
     );
   }
 }

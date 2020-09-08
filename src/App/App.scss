@@ -1,7 +1,21 @@
 @import '../style/_variables';
 
 .App {
+  background-color: lightgray;
+  margin: 0px;
+  padding: 0px;
 }
 
-.sectionTitle {
+.member_list_div {
+  margin: 0px 20px;
+  padding-bottom: 20px;
+}
+
+.memberTagDiv {
+  background-color: darkgray;
+  padding: 5px 15px;
+  margin: 10px 20px;
+  width: 80px;
+  text-align: center;
+  display: inline-block;
 }
