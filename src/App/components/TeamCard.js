@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.scss';
 import MemberTag from './MemberTag';
+import { makeHttpRequest, renameTeamNameUrl } from '../utils/http';
 
 class TeamCard extends React.Component {
   constructor(props) {
@@ -8,18 +9,43 @@ class TeamCard extends React.Component {
 
     this.state = {
       inputVisible: props.inputVisible,
+      name: props.name,
     };
   }
 
+  onRenameKeyPress = (event, index) => {
+    if (event.key === 'Enter') {
+      const targetValue = event.target.value;
+      makeHttpRequest('post', renameTeamNameUrl, {
+        newName: targetValue,
+        index,
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            this.setState({
+              name: targetValue,
+              inputVisible: false,
+            });
+          } else if (response.status === 409) {
+            console.log('repeat name');
+          }
+        })
+        .catch((error) => {
+          // do nothing here
+          console.log(error);
+        });
+    }
+  };
+
   render() {
-    const { name, members, onKeyPress, index } = this.props;
+    const { members, index } = this.props;
     return (
       <div>
         {this.state.inputVisible ? (
           <input
             type="text"
             className="renameInput"
-            onKeyPress={(event) => onKeyPress(event, index)}
+            onKeyPress={(event) => this.onRenameKeyPress(event, index)}
           />
         ) : (
           <button
@@ -33,7 +59,7 @@ class TeamCard extends React.Component {
               });
             }}
           >
-            {name}
+            {this.state.name}
           </button>
         )}
         <div>

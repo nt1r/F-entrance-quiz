@@ -6,8 +6,8 @@ import {
   addNewMembersUrl,
   assignGroupUrl,
   getAllMembersUrl,
+  getCachedAssignGroupUrl,
   makeHttpRequest,
-  renameTeamNameUrl,
 } from './utils/http';
 
 class App extends Component {
@@ -28,6 +28,13 @@ class App extends Component {
         members: response.data.memberList,
       });
     });
+
+    makeHttpRequest('get', getCachedAssignGroupUrl).then((response) => {
+      console.log(response.data);
+      this.setState({
+        teamList: response.data.teamList,
+      });
+    });
   }
 
   onAddMemberKeyPress = (event) => {
@@ -40,26 +47,6 @@ class App extends Component {
             members: response.data.memberList,
             addMemberInputVisible: false,
           });
-        })
-        .catch((error) => {
-          // do nothing here
-          console.log(error);
-        });
-    }
-  };
-
-  onRenameKeyPress = (event, index) => {
-    if (event.key === 'Enter') {
-      makeHttpRequest('post', renameTeamNameUrl, {
-        newName: event.target.value,
-        index,
-      })
-        .then((response) => {
-          if (response.status === 200) {
-            console.log('success');
-          } else if (response.status === 409) {
-            console.log('repeat name');
-          }
         })
         .catch((error) => {
           // do nothing here
@@ -93,11 +80,7 @@ class App extends Component {
     return (
       <body className="App">
         <main>
-          <GroupSection
-            teamList={this.state.teamList}
-            onKeyPress={this.onRenameKeyPress}
-            onClickButton={this.onClickAssignButton}
-          />
+          <GroupSection teamList={this.state.teamList} onClickButton={this.onClickAssignButton} />
           <MemberSection
             members={this.state.members}
             inputVisible={this.state.addMemberInputVisible}

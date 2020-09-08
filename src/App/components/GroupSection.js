@@ -4,7 +4,7 @@ import TeamCard from './TeamCard';
 
 class GroupSection extends React.Component {
   render() {
-    const { teamList, onKeyPress, onClickButton } = this.props;
+    const { teamList, onClickButton } = this.props;
     return (
       <section>
         <div className="groupSectionTitleDiv">
@@ -20,7 +20,6 @@ class GroupSection extends React.Component {
               members={team.memberList}
               index={index}
               inputVisible={false}
-              onKeyPress={onKeyPress}
             />
           );
         })}
